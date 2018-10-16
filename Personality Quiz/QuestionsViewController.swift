@@ -11,11 +11,11 @@ import UIKit
 class QuestionsViewController: UIViewController {
     
     var viewModel = QuestionsViewModel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI(viewModel: viewModel) //Pass in view model/ puts view model into view
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -38,19 +38,21 @@ class QuestionsViewController: UIViewController {
     // View model : User derived/model
     // Model : Backend/file-system
     
-    var answersChosen: [Answer] = []
+    private var answersChosen: [Answer] = []
     
     //var viewModel = QuestionsViewModel()
     
     func updateUI(viewModel: QuestionsViewModel){
         
-        navigationItem.title = "Question #\(viewModel.questionIndex+1)"
+        let state = viewModel.currentStateForUI()
+        
+        navigationItem.title = state.navigationTitle
         
         
-        questionLabel.text = viewModel.currentQuestion.text
-        progressBar.setProgress(viewModel.totalProgress, animated: true)
+        questionLabel.text = state.currentQuestion.text
+        progressBar.setProgress(state.progressThroughQuestions, animated: true)
         
-        multipleAnswers(using: viewModel.currentAnswer)
+        multipleAnswers(using: state.currentQuestion.answers)
         
     }
     
@@ -78,7 +80,7 @@ class QuestionsViewController: UIViewController {
         }
     }
     @IBAction func multipleAnswersButtonPressed(_ sender: Any) { //call QVM from here too/ reading from view model
-        let currentAnswers = viewModel.question[viewModel.questionIndex].answers
+        let currentAnswers = state.currentQuestion.answers
         
         if multipleSwitch1.isOn {
             answersChosen.append(currentAnswers[0])
@@ -98,18 +100,27 @@ class QuestionsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "ResultsSegue" {
-            let resultsViewController = segue.destination as! ResultsViewController //Downcasting? Force unwrapping here?
-            resultsViewController.responses = answersChosen
+            
+            //Fail fast only in debug for developer
+            assert(segue.destination is ResultsViewController)
+            if let resultsViewController = segue.destination as? ResultsViewController {
+                resultsViewController.responses = answersChosen
+            }
         } // Could we had just done an extension instead of overriding an empty function
+        
+        //Hard coded relationship (axioms) = internally crash on
+        //assert only crash in development
+        // Precondition will crash in all build (debug, release)
+        // Fail fast: assert, precondition or force unwrapping
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
