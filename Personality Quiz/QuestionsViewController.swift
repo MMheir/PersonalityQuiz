@@ -38,9 +38,9 @@ class QuestionsViewController: UIViewController {
     // View model : User derived/model
     // Model : Backend/file-system
     
-    private var answersChosen: [Answer] = []
-    
     //var viewModel = QuestionsViewModel()
+    
+    var answerState: [AnimalType]
     
     func updateUI(viewModel: QuestionsViewModel){
         
@@ -80,20 +80,14 @@ class QuestionsViewController: UIViewController {
         }
     }
     @IBAction func multipleAnswersButtonPressed(_ sender: Any) { //call QVM from here too/ reading from view model
-        let currentAnswers = state.currentQuestion.answers
         
-        if multipleSwitch1.isOn {
-            answersChosen.append(currentAnswers[0])
-        }
-        if multipleSwitch2.isOn {
-            answersChosen.append(currentAnswers[1])
-        }
-        if multipleSwitch3.isOn {
-            answersChosen.append(currentAnswers[2])
-        }
-        if multipleSwitch4.isOn {
-            answersChosen.append(currentAnswers[3])
-        }
+        let answersSelected: [Bool] = [
+            multipleSwitch1.isOn,
+            multipleSwitch2.isOn,
+            multipleSwitch3.isOn,
+            multipleSwitch4.isOn
+        ]
+        answerState = viewModel.userRespondCurrentQuestion(answersSelected: answersSelected)
         
         nextQuestion(viewModel: viewModel)
     }
@@ -104,7 +98,7 @@ class QuestionsViewController: UIViewController {
             //Fail fast only in debug for developer
             assert(segue.destination is ResultsViewController)
             if let resultsViewController = segue.destination as? ResultsViewController {
-                resultsViewController.responses = answersChosen
+                resultsViewController.responses = answerState
             }
         } // Could we had just done an extension instead of overriding an empty function
         

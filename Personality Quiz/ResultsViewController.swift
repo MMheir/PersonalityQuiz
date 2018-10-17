@@ -19,13 +19,12 @@ class ResultsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    var responses: [Answer]!
+    var responses: [AnimalType]!
     
     func calculatePersonalityResult(){ //Dictionnaries
         var answersFrequency: [AnimalType: Int] = [:]
-        let responseTypes = responses.map {$0.type}
         
-        for response in responseTypes {
+        for response in responses {
             answersFrequency[response] = (answersFrequency[response] ?? 0) + 1
         }
         

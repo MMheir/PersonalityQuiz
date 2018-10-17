@@ -12,7 +12,7 @@
 //When mutating, struct use different ones where class doesn't
 
 //TODOs:
-// - Answers "logic" into view model
+// - Answers "logic" into view model [x]
 // - Move interface stuff at top of struct VM
 // - All todos with results (types, etc)
 // - Find a way to use a loop to access switches and labels in VC instead of "hard coding" it
@@ -40,7 +40,7 @@ struct QuestionsViewModel {
         return "Question #\(questionIndex+1)"
     } //TODO: Localization strings (low priority)
     
-    private var answersChosen: [Answer] = []
+    private var answersChosen: [AnimalType] = []
     // TODO: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
     
     private let questions: [Question] = [ //part of model
@@ -76,7 +76,16 @@ struct QuestionsViewModel {
         return (currentQuestion, progressThroughQuestions, navigationTitle)
     }
     
-    internal func userrespondCurrentQuestion(answerSelected: [Bool]){
+    internal mutating func userRespondCurrentQuestion(answersSelected: [Bool]) -> [AnimalType]{
         //Work form lines 83 to 96 in VC
+        
+        let currentAnswers = currentQuestion.answers
+        
+        for (index, isSelected) in answersSelected.enumerated() {
+            if isSelected {
+                answersChosen.append(currentAnswers[index].type)
+            }
+        }
+        return answersChosen
     }
 }
