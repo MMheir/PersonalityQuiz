@@ -40,7 +40,7 @@ class QuestionsViewController: UIViewController {
     
     //var viewModel = QuestionsViewModel()
     
-    var answerState: [AnimalType]
+    var answerState: [AnimalType] = []
     
     func updateUI(viewModel: QuestionsViewModel){
         
@@ -69,11 +69,11 @@ class QuestionsViewController: UIViewController {
         multipleSwitch4.isOn = false
     }
     
-    func nextQuestion (viewModel: QuestionsViewModel)
-    {
-        viewModel.questionIndex += 1
+    func nextQuestion (){
         
-        if viewModel.questionIndex < viewModel.question.count {
+        viewModel.incrementQuestionIndex()
+        
+        if viewModel.isQuestion() {
             updateUI(viewModel: viewModel)
         } else {
             performSegue(withIdentifier: "ResultsSegue", sender: nil)
@@ -89,7 +89,7 @@ class QuestionsViewController: UIViewController {
         ]
         answerState = viewModel.userRespondCurrentQuestion(answersSelected: answersSelected)
         
-        nextQuestion(viewModel: viewModel)
+        nextQuestion()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

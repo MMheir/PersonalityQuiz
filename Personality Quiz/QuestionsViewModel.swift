@@ -41,7 +41,7 @@ struct QuestionsViewModel {
     } //TODO: Localization strings (low priority)
     
     private var answersChosen: [AnimalType] = []
-    // TODO: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
+    // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
     
     private let questions: [Question] = [ //part of model
         Question(text: "What is your favorite food?",
@@ -76,8 +76,15 @@ struct QuestionsViewModel {
         return (currentQuestion, progressThroughQuestions, navigationTitle)
     }
     
+    internal mutating func incrementQuestionIndex() {
+        questionIndex += 1
+    }
+    
+    internal func isQuestion() -> Bool {
+        return questionIndex < questions.count
+    }
+ 
     internal mutating func userRespondCurrentQuestion(answersSelected: [Bool]) -> [AnimalType]{
-        //Work form lines 83 to 96 in VC
         
         let currentAnswers = currentQuestion.answers
         
