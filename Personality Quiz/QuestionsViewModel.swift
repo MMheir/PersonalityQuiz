@@ -12,13 +12,8 @@
 //When mutating, struct use different ones where class doesn't
 
 //TODOs:
-// - Answers "logic" into view model [x]
-// - Move interface stuff at top of struct VM
-// - All todos with results (types, etc)
-// - Find a way to use a loop to access switches and labels in VC instead of "hard coding" it
-//   - Outlet array
-//   - Not use storyboard and programatically build your view (eg if you have different number of answers)
-// - Git branches (to have a safety net)
+// - Question stack view cropping text and left aligned switches should be right aligned
+//   - Not use storyboard and programatically build your view (eg if you have different number of answers) diff
 
 import Foundation
 import UIKit
@@ -40,7 +35,7 @@ struct QuestionsViewModel {
         return "Question #\(questionIndex+1)"
     } //TODO: Localization strings (low priority)
     
-    private var answersChosen: [AnimalType] = []
+    internal private(set) var answersChosen: [AnimalType] = []
     // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
     
     private let questions: [Question] = [ //part of model
@@ -80,11 +75,11 @@ struct QuestionsViewModel {
         questionIndex += 1
     }
     
-    internal func isQuestion() -> Bool {
+    internal func nextStateIsQuestion() -> Bool {
         return questionIndex < questions.count
     }
  
-    internal mutating func userRespondCurrentQuestion(answersSelected: [Bool]) -> [AnimalType]{
+    internal mutating func userRespondCurrentQuestion(answersSelected: [Bool]){
         
         let currentAnswers = currentQuestion.answers
         
@@ -93,6 +88,5 @@ struct QuestionsViewModel {
                 answersChosen.append(currentAnswers[index].type)
             }
         }
-        return answersChosen
     }
 }

@@ -40,8 +40,6 @@ class QuestionsViewController: UIViewController {
     
     //var viewModel = QuestionsViewModel()
     
-    var answerState: [AnimalType] = []
-    
     func updateUI(viewModel: QuestionsViewModel){
         
         let state = viewModel.currentStateForUI()
@@ -73,7 +71,7 @@ class QuestionsViewController: UIViewController {
         
         viewModel.incrementQuestionIndex()
         
-        if viewModel.isQuestion() {
+        if viewModel.nextStateIsQuestion() { //TODO: Use 2 cases enum, switch over that enum
             updateUI(viewModel: viewModel)
         } else {
             performSegue(withIdentifier: "ResultsSegue", sender: nil)
@@ -87,7 +85,8 @@ class QuestionsViewController: UIViewController {
             multipleSwitch3.isOn,
             multipleSwitch4.isOn
         ]
-        answerState = viewModel.userRespondCurrentQuestion(answersSelected: answersSelected)
+        
+        viewModel.userRespondCurrentQuestion(answersSelected: answersSelected)
         
         nextQuestion()
     }
@@ -98,7 +97,7 @@ class QuestionsViewController: UIViewController {
             //Fail fast only in debug for developer
             assert(segue.destination is ResultsViewController)
             if let resultsViewController = segue.destination as? ResultsViewController {
-                resultsViewController.responses = answerState
+                resultsViewController.responses = viewModel.answersChosen
             }
         } // Could we had just done an extension instead of overriding an empty function
         
