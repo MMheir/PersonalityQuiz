@@ -14,6 +14,12 @@
 //TODOs:
 // - Question stack view cropping text and left aligned switches should be right aligned
 //   - Not use storyboard and programatically build your view (eg if you have different number of answers) diff
+// - Test cases:
+//  - none
+//  - one
+//  - multiple equal
+//  - clear winner
+// - Unit test
 
 import Foundation
 import UIKit
@@ -42,7 +48,7 @@ struct QuestionsViewModel {
         Question(text: "What is your favorite food?",
                  type: .multiple,
                  answers:[
-                    Answer(text: "Streak", type: .dog),
+                    Answer(text: "Steak", type: .dog),
                     Answer(text: "Fish", type: .cat),
                     Answer(text: "Cheese", type: .mouse),
                     Answer(text: "Carrots", type: .rabbit)

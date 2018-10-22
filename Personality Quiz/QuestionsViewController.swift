@@ -38,8 +38,6 @@ class QuestionsViewController: UIViewController {
     // View model : User derived/model
     // Model : Backend/file-system
     
-    //var viewModel = QuestionsViewModel()
-    
     func updateUI(viewModel: QuestionsViewModel){
         
         let state = viewModel.currentStateForUI()

@@ -14,18 +14,27 @@ class ResultsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calculatePersonalityResult()
+        loadAnswersFromDifferentQuestions()
         navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
     }
     
     var responses: [AnimalType]!
     
-    func calculatePersonalityResult(){ //Dictionnaries
+    func loadAnswersFromDifferentQuestions(){
+        if let mostCommonAnswer = ResultsViewController.calculatePersonalityResult(responses: responses) {
+            resultAnswerLabel.text = "You are a \(mostCommonAnswer.rawValue)"
+        } else {
+            resultAnswerLabel.text = "You are a carnivore"
+        } // TODO Localize
+    }
+    
+    static func calculatePersonalityResult(responses: [AnimalType]) -> AnimalType? { //Dictionnaries
         var answersFrequency: [AnimalType: Int] = [:]
         
         for response in responses {
-            answersFrequency[response] = (answersFrequency[response] ?? 0) + 1
+//            answersFrequency[response] = (answersFrequency[response] ?? 0) + 1
+            answersFrequency[response, default: 0] += 1
         }
         
         //        let answersSorted = answersFrequency.sorted(by:
@@ -35,11 +44,9 @@ class ResultsViewController: UIViewController {
         //
         //        let mostCommonAnswer = answersSorted.first!.key
         
-        let mostCommonAnswer = answersFrequency.sorted{$0.1 > $1.1}.first!.key // $0 and $1?
-        
-        resultAnswerLabel.text = "You are a \(mostCommonAnswer.rawValue)"
-        
-        
+        return answersFrequency
+            .sorted { $0.value < $1.value }
+            .last?.key
     }
     
     
