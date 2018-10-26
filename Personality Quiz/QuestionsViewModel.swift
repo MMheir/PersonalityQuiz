@@ -6,31 +6,49 @@
 //  Copyright © 2018 cl-dev. All rights reserved.
 //
 
+//Document class, functions, variables
+
+//mutability and things referencing it
+//When mutating, struct use different ones where class doesn't
+
+//TODOs:
+// - Question stack view cropping text and left aligned switches should be right aligned
+//   - Not use storyboard and programatically build your view (eg if you have different number of answers) diff
+// - Test cases:
+//  - none
+//  - one
+//  - multiple equal
+//  - clear winner
+// - Unit test
+
 import Foundation
 import UIKit
 
-class QuestionsViewModel {
+struct QuestionsViewModel {
     
-    public var questionIndex = 0
-    public var currentQuestion: Question {
-        return question[questionIndex]
-    }
-    public var currentAnswer: [Answer] {
-        return currentQuestion.answers
-    }
-    public var totalProgress: Float {
-        return Float(questionIndex)/Float(question.count)
+    private var questionIndex = 0
+    private var currentQuestion: Question {
+        return questions[questionIndex]
     }
     
-    public var answersChosen: [Answer] {
-        return []
+    /// [0,1] value to describe progression through questions
+    private var progressThroughQuestions: Float {
+        return Float(questionIndex)/Float(questions.count)
     }
+    //mutating properties and calculated properties are var
     
-    public var question: [Question] = [ //part of model
+    private var navigationTitle: String {
+        return "Question #\(questionIndex+1)"
+    } //TODO: Localization strings (low priority)
+    
+    internal private(set) var answersChosen: [AnimalType] = []
+    // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
+    
+    private let questions: [Question] = [ //part of model
         Question(text: "What is your favorite food?",
                  type: .multiple,
                  answers:[
-                    Answer(text: "Streak", type: .dog),
+                    Answer(text: "Steak", type: .dog),
                     Answer(text: "Fish", type: .cat),
                     Answer(text: "Cheese", type: .mouse),
                     Answer(text: "Carrots", type: .rabbit)
@@ -52,4 +70,29 @@ class QuestionsViewModel {
                     Answer(text: "I get a little nervous", type: .rabbit)
             ])
     ]
+    
+    //MARK - Interface for view controller
+    
+    internal func currentStateForUI() -> (currentQuestion: Question, progressThroughQuestions: Float, navigationTitle: String){
+        return (currentQuestion, progressThroughQuestions, navigationTitle)
+    }
+    
+    internal mutating func incrementQuestionIndex() {
+        questionIndex += 1
+    }
+    
+    internal func nextStateIsQuestion() -> Bool {
+        return questionIndex < questions.count
+    }
+ 
+    internal mutating func userRespondCurrentQuestion(answersSelected: [Bool]){
+        
+        let currentAnswers = currentQuestion.answers
+        
+        for (index, isSelected) in answersSelected.enumerated() {
+            if isSelected {
+                answersChosen.append(currentAnswers[index].type)
+            }
+        }
+    }
 }

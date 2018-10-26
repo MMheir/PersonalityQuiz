@@ -24,5 +24,8 @@ struct Answer {
 }
 
 enum AnimalType: Character {
-    case dog = "🐶", cat = "🐱", mouse = "🐭", rabbit = "🐰"
+    case dog = "🐶"
+    case cat = "🐱"
+    case mouse = "🐭"
+    case rabbit = "🐰"
 }
