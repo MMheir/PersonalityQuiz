@@ -1,0 +1,23 @@
+"firstQuestion" = "What is your favorite food?";
+"secondQuestion" = "What activities do you enjoy?";
+"thirdQuestion" = "How much do you enjoy car rides?";
+"Question" = "Question #%d";
+
+"Result" = "You are a %@";
+
+"Steak" = "Steak";
+"Fish" = "Fish";
+"Cheese" = "Cheese";
+"Carrots" = "Carrots";
+
+"Swimming" = "Swimming";
+"Sleeping" = "Sleeping";
+"Eating" = "Eating";
+"Jumping" = "Jumping";
+
+"I love them" = "I love them";
+"I dislike them" = "I dislike them";
+"I barely notice them" = "I barely notice them";
+"I get a little nervous" = "I get a little nervous";
+
+"Carnivore" = "You are a carnivore";

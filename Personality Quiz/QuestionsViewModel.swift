@@ -38,36 +38,36 @@ struct QuestionsViewModel {
     //mutating properties and calculated properties are var
     
     private var navigationTitle: String {
-        return "Question #\(questionIndex+1)"
-    } //TODO: Localization strings (low priority)
+        return String(format: NSLocalizedString("Question", comment: ""), questionIndex+1)
+    } //DONE: Localization strings (low priority)
     
     internal private(set) var answersChosen: [AnimalType] = []
     // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
     
     private let questions: [Question] = [ //part of model
-        Question(text: "What is your favorite food?",
+        Question(text: NSLocalizedString("firstQuestion", comment: ""),
                  type: .multiple,
                  answers:[
-                    Answer(text: "Steak", type: .dog),
-                    Answer(text: "Fish", type: .cat),
-                    Answer(text: "Cheese", type: .mouse),
-                    Answer(text: "Carrots", type: .rabbit)
+                    Answer(text: NSLocalizedString("Steak", comment: ""), type: .dog),
+                    Answer(text: NSLocalizedString("Fish", comment: ""), type: .cat),
+                    Answer(text: NSLocalizedString("Cheese", comment: ""), type: .mouse),
+                    Answer(text: NSLocalizedString("Carrots", comment: ""), type: .rabbit)
             ]),
-        Question(text: "What activities do you enjoy?",
+        Question(text: NSLocalizedString("secondQuestion", comment: ""),
                  type: .multiple,
                  answers:[
-                    Answer(text: "Swimming", type: .dog),
-                    Answer(text: "Sleeping", type: .cat),
-                    Answer(text: "Eating", type: .mouse),
-                    Answer(text: "Jumping", type: .rabbit)
+                    Answer(text: NSLocalizedString("Swimming", comment: ""), type: .dog),
+                    Answer(text: NSLocalizedString("Sleeping", comment: ""), type: .cat),
+                    Answer(text: NSLocalizedString("Eating", comment: ""), type: .mouse),
+                    Answer(text: NSLocalizedString("Jumping", comment: ""), type: .rabbit)
             ]),
-        Question(text: "How much do you enjoy car rides?",
+        Question(text: NSLocalizedString("thirdQuestion", comment: ""),
                  type: .single,
                  answers:[
-                    Answer(text: "I love them", type: .dog),
-                    Answer(text: "I dislike them", type: .cat),
-                    Answer(text: "I barely notice them", type: .mouse),
-                    Answer(text: "I get a little nervous", type: .rabbit)
+                    Answer(text: NSLocalizedString("I love them", comment: ""), type: .dog),
+                    Answer(text: NSLocalizedString("I dislike them", comment: ""), type: .cat),
+                    Answer(text: NSLocalizedString("I barely notice them", comment: ""), type: .mouse),
+                    Answer(text: NSLocalizedString("I get a little nervous", comment: ""), type: .rabbit)
             ])
     ]
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8C25ED20216F027D00EB7F68 /* QuestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25ED1F216F027D00EB7F68 /* QuestionsViewModel.swift */; };
+		8C25ED25217EA0E700EB7F68 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C25ED27217EA0E700EB7F68 /* Localizable.strings */; };
 		F4D496EF21482E8100F946A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D496EE21482E8100F946A0 /* AppDelegate.swift */; };
 		F4D496F121482E8100F946A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D496F021482E8100F946A0 /* ViewController.swift */; };
 		F4D496F421482E8100F946A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D496F221482E8100F946A0 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		8C25ED1F216F027D00EB7F68 /* QuestionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewModel.swift; sourceTree = "<group>"; };
+		8C25ED26217EA0E700EB7F68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F4D496EB21482E8100F946A0 /* Personality Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personality Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D496EE21482E8100F946A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4D496F021482E8100F946A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		F4D496E221482E8100F946A0 = {
 			isa = PBXGroup;
 			children = (
+				8C25ED27217EA0E700EB7F68 /* Localizable.strings */,
 				F4D496ED21482E8100F946A0 /* Personality Quiz */,
 				F4D4970221482E8500F946A0 /* Personality QuizTests */,
 				F4D4970D21482E8500F946A0 /* Personality QuizUITests */,
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4D496F921482E8500F946A0 /* LaunchScreen.storyboard in Resources */,
+				8C25ED25217EA0E700EB7F68 /* Localizable.strings in Resources */,
 				F4D496F621482E8500F946A0 /* Assets.xcassets in Resources */,
 				F4D496F421482E8100F946A0 /* Main.storyboard in Resources */,
 			);
@@ -313,6 +317,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8C25ED27217EA0E700EB7F68 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C25ED26217EA0E700EB7F68 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		F4D496F221482E8100F946A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -336,6 +348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -397,6 +410,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -1,0 +1,45 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6hD-S1-VKJ"; */
+"6hD-S1-VKJ.text" = "Label";
+
+/* Class = "UILabel"; text = "🐶"; ObjectID = "AlY-Xa-KIe"; */
+"AlY-Xa-KIe.text" = "🐶";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "P1E-4P-Dwe"; */
+"P1E-4P-Dwe.text" = "Label";
+
+/* Class = "UIViewController"; title = "Results"; ObjectID = "Stz-1O-TRd"; */
+"Stz-1O-TRd.title" = "Results";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "U0D-we-BIs"; */
+"U0D-we-BIs.text" = "Label";
+
+/* Class = "UILabel"; text = "Which animal are you?"; ObjectID = "V00-4h-2VY"; */
+"Question.text" = "Which animal are you?";
+
+/* Class = "UILabel"; text = "🐰"; ObjectID = "Z8A-ot-TMx"; */
+"Z8A-ot-TMx.text" = "🐰";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hus-k5-xBf"; */
+"hus-k5-xBf.text" = "Label";
+
+/* Class = "UILabel"; text = "How much do you enjoy car rides?"; ObjectID = "lkr-gY-9Bm"; */
+"lkr-gY-9Bm.text" = "How much do you enjoy car rides?";
+
+/* Class = "UIButton"; normalTitle = "Begin personality quiz"; ObjectID = "mHM-Jq-Egz"; */
+"mHM-Jq-Egz.normalTitle" = "Begin personality quiz";
+
+/* Class = "UIButton"; normalTitle = "Submit Answer"; ObjectID = "pU8-hn-Fue"; */
+"pU8-hn-Fue.normalTitle" = "Submit Answer";
+
+/* Class = "UILabel"; text = "You are a 🐶!"; ObjectID = "qiX-Eb-mRL"; */
+"qiX-Eb-mRL.text" = "You are a 🐶!";
+
+/* Class = "UINavigationItem"; title = "Results"; ObjectID = "vjB-ap-HbN"; */
+"vjB-ap-HbN.title" = "Results";
+
+/* Class = "UILabel"; text = "🐱"; ObjectID = "xzV-rs-9W8"; */
+"xzV-rs-9W8.text" = "🐱";
+
+/* Class = "UILabel"; text = "🐭"; ObjectID = "ySi-0s-Vof"; */
+"ySi-0s-Vof.text" = "🐭";
