@@ -24,10 +24,10 @@ class ResultsViewController: UIViewController {
     func loadAnswersFromDifferentQuestions(){
         if let mostCommonAnswer = ResultsViewController.calculatePersonalityResult(responses: responses) {
             resultAnswerLabel.text = String(format: NSLocalizedString("Result", comment: ""), "\(mostCommonAnswer.rawValue)")
-            // QUESTION: What to do with this??
+            
         } else {
             resultAnswerLabel.text = String(format: NSLocalizedString("Carnivore", comment: ""))
-        } // TODO Localize
+        }
     }
     
     static func calculatePersonalityResult(responses: [AnimalType]) -> AnimalType? { //Dictionnaries

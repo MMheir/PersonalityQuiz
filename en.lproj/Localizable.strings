@@ -1,7 +1,7 @@
 "firstQuestion" = "What is your favorite food?";
 "secondQuestion" = "What activities do you enjoy?";
 "thirdQuestion" = "How much do you enjoy car rides?";
-"Question" = "Question #%d";
+"Question" = "Question #%@";
 
 "Result" = "You are a %@";
 
@@ -21,3 +21,7 @@
 "I get a little nervous" = "I get a little nervous";
 
 "Carnivore" = "You are a carnivore";
+
+// TODO:
+//  - Look into r.swift cocopod integration
+//  - Add tone comment to set the tone

@@ -12,7 +12,9 @@
 //When mutating, struct use different ones where class doesn't
 
 //TODOs:
-// - Question stack view cropping text and left aligned switches should be right aligned
+// - Implement scroll view on QuestionsViewController (new branch)
+//    - Multiline labels in a stack view in a scroll view
+//    - Make an article with findings
 //   - Not use storyboard and programatically build your view (eg if you have different number of answers) diff
 // - Test cases:
 //  - none
@@ -38,8 +40,8 @@ struct QuestionsViewModel {
     //mutating properties and calculated properties are var
     
     private var navigationTitle: String {
-        return String(format: NSLocalizedString("Question", comment: ""), questionIndex+1)
-    } //DONE: Localization strings (low priority)
+        return String(format: NSLocalizedString("Question", comment: ""), "\(questionIndex+1)")
+    } // TODO: format number (get format string for number)
     
     internal private(set) var answersChosen: [AnimalType] = []
     // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
@@ -56,10 +58,10 @@ struct QuestionsViewModel {
         Question(text: NSLocalizedString("secondQuestion", comment: ""),
                  type: .multiple,
                  answers:[
-                    Answer(text: NSLocalizedString("Swimming", comment: ""), type: .dog),
-                    Answer(text: NSLocalizedString("Sleeping", comment: ""), type: .cat),
-                    Answer(text: NSLocalizedString("Eating", comment: ""), type: .mouse),
-                    Answer(text: NSLocalizedString("Jumping", comment: ""), type: .rabbit)
+                    Answer(text: NSLocalizedString("Swimming", comment: "The user enjoys swimming"), type: .dog),
+                    Answer(text: NSLocalizedString("Sleeping", comment: "The user enjoys sleeping"), type: .cat),
+                    Answer(text: NSLocalizedString("Eating", comment: "The user enjoys eating"), type: .mouse),
+                    Answer(text: NSLocalizedString("Jumping", comment: "The user enjoys jumping"), type: .rabbit)
             ]),
         Question(text: NSLocalizedString("thirdQuestion", comment: ""),
                  type: .single,
@@ -70,6 +72,8 @@ struct QuestionsViewModel {
                     Answer(text: NSLocalizedString("I get a little nervous", comment: ""), type: .rabbit)
             ])
     ]
+    // String comments to provide context for the element for translate
+    // TODO: Write comments for strings
     
     //MARK - Interface for view controller
     
