@@ -28,4 +28,5 @@ enum AnimalType: Character {
     case cat = "🐱"
     case mouse = "🐭"
     case rabbit = "🐰"
+    case multiple = "🤯"
 }

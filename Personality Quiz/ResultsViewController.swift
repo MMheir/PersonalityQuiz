@@ -37,16 +37,19 @@ class ResultsViewController: UIViewController {
             answersFrequency[response, default: 0] += 1
         }
         
-        //        let answersSorted = answersFrequency.sorted(by:
-        //        {(pair1, pair2) -> Bool in
-        //            return pair1.value > pair2.value
-        //        })
-        //
-        //        let mostCommonAnswer = answersSorted.first!.key
+        
+        if answersFrequency.count > 1 {
+            let secondMostCommonAnswer = answersFrequency.sorted { $0.value > $1.value }[1].value
+            let mostCommonAnswer = answersFrequency.sorted { $0.value > $1.value }.first?.value
+            
+            if (mostCommonAnswer == secondMostCommonAnswer ){
+                return .multiple
+            }
+        }
         
         return answersFrequency
-            .sorted { $0.value < $1.value }
-            .last?.key
+            .sorted { $0.value > $1.value }
+            .first?.key
     }
     
     
