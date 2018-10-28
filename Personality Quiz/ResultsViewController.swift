@@ -23,6 +23,14 @@ class ResultsViewController: UIViewController {
     
     // TODO: Deal with personalityResult returning an array
     func loadAnswersFromDifferentQuestions(){
+<<<<<<< HEAD
+        if let mostCommonAnswer = ResultsViewController.calculatePersonalityResult(responses: responses) {
+            resultAnswerLabel.text = String(format: NSLocalizedString("Result", comment: ""), "\(mostCommonAnswer.rawValue)")
+            
+        } else {
+            resultAnswerLabel.text = String(format: NSLocalizedString("Carnivore", comment: ""))
+        }
+=======
         let mostCommonAnswer = ResultsViewController.calculatePersonalityResult(responses: responses)
         var answerText = "You are a"
         
@@ -35,6 +43,7 @@ class ResultsViewController: UIViewController {
         }
         
         resultAnswerLabel.text = answerText
+>>>>>>> master
     }
     
     static func calculatePersonalityResult(responses: [AnimalType]) -> [AnimalType] { //Dictionnaries
