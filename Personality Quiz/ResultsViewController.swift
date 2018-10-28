@@ -21,16 +21,9 @@ class ResultsViewController: UIViewController {
     
     var responses: [AnimalType]!
     
-    // TODO: Deal with personalityResult returning an array
+    // DONE: Deal with personalityResult returning an array
+    // TODO: Localize new strings
     func loadAnswersFromDifferentQuestions(){
-<<<<<<< HEAD
-        if let mostCommonAnswer = ResultsViewController.calculatePersonalityResult(responses: responses) {
-            resultAnswerLabel.text = String(format: NSLocalizedString("Result", comment: ""), "\(mostCommonAnswer.rawValue)")
-            
-        } else {
-            resultAnswerLabel.text = String(format: NSLocalizedString("Carnivore", comment: ""))
-        }
-=======
         let mostCommonAnswer = ResultsViewController.calculatePersonalityResult(responses: responses)
         var answerText = "You are a"
         
@@ -43,7 +36,6 @@ class ResultsViewController: UIViewController {
         }
         
         resultAnswerLabel.text = answerText
->>>>>>> master
     }
     
     static func calculatePersonalityResult(responses: [AnimalType]) -> [AnimalType] { //Dictionnaries
