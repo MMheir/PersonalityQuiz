@@ -21,32 +21,60 @@ class ResultsViewController: UIViewController {
     
     var responses: [AnimalType]!
     
+    // TODO: Deal with personalityResult returning an array
     func loadAnswersFromDifferentQuestions(){
-        if let mostCommonAnswer = ResultsViewController.calculatePersonalityResult(responses: responses) {
-            resultAnswerLabel.text = "You are a \(mostCommonAnswer.rawValue)"
+        let mostCommonAnswer = ResultsViewController.calculatePersonalityResult(responses: responses)
+        var answerText = "You are a"
+        
+        if mostCommonAnswer.count != 0 {
+            for answer in mostCommonAnswer {
+                answerText = answerText + " \(answer.rawValue)"
+            }
         } else {
-            resultAnswerLabel.text = "You are a carnivore"
-        } // TODO Localize
+            answerText = answerText + " carnivore"
+        }
+        
+        resultAnswerLabel.text = answerText
     }
     
-    static func calculatePersonalityResult(responses: [AnimalType]) -> AnimalType? { //Dictionnaries
+    static func calculatePersonalityResult(responses: [AnimalType]) -> [AnimalType] { //Dictionnaries
         var answersFrequency: [AnimalType: Int] = [:]
-        
+//        var answersFrequency2: Dictionary<AnimalType, Int> = [:]
+//        var answersFrequency3 = Dictionary<AnimalType, Int>()
+//
+//        var arr1: [AnimalType] = [] // initializing with a litteral
+//        var arr2 = [AnimalType].init() // calling an initializer using swift shorthand
+//        var arr3 = Array<AnimalType>.init() // calling an initializer using generic syntax
+//
+//        var test1: [AnimalType: [Int]] = [:]
+//        var test2: Dictionary<AnimalType, Array<Int>> = [:]
+//        var test3 = Dictionary<AnimalType, Array<Int>>.init()
+
+        // Builds the histogram
         for response in responses {
 //            answersFrequency[response] = (answersFrequency[response] ?? 0) + 1
             answersFrequency[response, default: 0] += 1
         }
         
-        //        let answersSorted = answersFrequency.sorted(by:
-        //        {(pair1, pair2) -> Bool in
-        //            return pair1.value > pair2.value
-        //        })
-        //
-        //        let mostCommonAnswer = answersSorted.first!.key
+        let answersAndCountSortedDecreasingByCount = answersFrequency.sorted { $0.value > $1.value }
         
-        return answersFrequency
-            .sorted { $0.value < $1.value }
-            .last?.key
+        // Take all top answers equal by count
+        let highestCount: Int? = answersAndCountSortedDecreasingByCount.first?.value
+        let topAnswersAndCount = answersAndCountSortedDecreasingByCount.prefix { (_ , value: Int) -> Bool in
+            return highestCount == value
+        }
+        
+        // Extracting only the top answers
+        let topAnswers = topAnswersAndCount.map { (key: AnimalType, value: Int) -> AnimalType in
+            return key
+        }
+        
+        // Build an array from the ArraySlice
+        return Array<AnimalType>(topAnswers)
+        // return [AnimalType](topAnswers)
+        
+        // For a future app: Madrid chaining
+    
     }
     
     
