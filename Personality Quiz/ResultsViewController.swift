@@ -22,7 +22,6 @@ class ResultsViewController: UIViewController {
     var responses: [AnimalType]!
     
     // DONE: Deal with personalityResult returning an array
-    // TODO: Localize new strings
     func loadAnswersFromDifferentQuestions(){
         let mostCommonAnswer = ResultsViewController.calculatePersonalityResult(responses: responses)
         var answerText = "You are a"
