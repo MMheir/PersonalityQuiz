@@ -2,6 +2,7 @@
 "secondQuestion" = "What activities do you enjoy?";
 "thirdQuestion" = "How much do you enjoy car rides?";
 "Question" = "Question #%@";
+"invalid index" = "invalid index";
 
 "Result" = "You are a %@";
 

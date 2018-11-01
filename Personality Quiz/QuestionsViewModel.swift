@@ -17,10 +17,10 @@
 //    - Make an article with findings
 //   - Not use storyboard and programatically build your view (eg if you have different number of answers) diff
 // - Test cases:
-//  - none
-//  - one
-//  - multiple equal
-//  - clear winner
+//  - none [x]
+//  - one [x]
+//  - multiple equal [x]
+//  - clear winner [x]
 // - Unit test
 
 import Foundation
@@ -40,8 +40,9 @@ struct QuestionsViewModel {
     //mutating properties and calculated properties are var
     
     private var navigationTitle: String {
-        return String(format: NSLocalizedString("Question", comment: ""), "\(questionIndex+1)")
-    } // TODO: format number (get format string for number)
+        let index = NumberFormatter().number(from: "\(questionIndex+1)")
+        return String(format: NSLocalizedString("Question", comment: ""), index ?? NSLocalizedString("invalid index", comment: ""))
+    } // DONE: format number (get format string for number)
     
     internal private(set) var answersChosen: [AnimalType] = []
     // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
