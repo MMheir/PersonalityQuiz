@@ -95,7 +95,7 @@ class QuestionsViewController: UIViewController {
             //Fail fast only in debug for developer
             assert(segue.destination is ResultsViewController)
             if let resultsViewController = segue.destination as? ResultsViewController {
-                resultsViewController.responses = viewModel.answersChosen
+                resultsViewController.viewModel.responses = viewModel.answersChosen
             }
         } // Could we had just done an extension instead of overriding an empty function
         
