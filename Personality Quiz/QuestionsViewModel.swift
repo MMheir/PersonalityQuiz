@@ -16,12 +16,6 @@
 //    - Multiline labels in a stack view in a scroll view
 //    - Make an article with findings
 //   - Not use storyboard and programatically build your view (eg if you have different number of answers) diff
-// - Test cases:
-//  - none [x]
-//  - one [x]
-//  - multiple equal [x]
-//  - clear winner [x]
-// - Unit test
 
 import Foundation
 import UIKit
@@ -40,23 +34,23 @@ struct QuestionsViewModel {
     //mutating properties and calculated properties are var
     
     private var navigationTitle: String {
-        let index = NumberFormatter().number(from: "\(questionIndex+1)")
-        return String(format: NSLocalizedString("Question", comment: ""), index ?? NSLocalizedString("invalid index", comment: ""))
+        let index = NSNumber(value: questionIndex+1)
+        return String(format: NSLocalizedString("Question", comment: ""), index)
     } // DONE: format number (get format string for number)
     
     internal private(set) var answersChosen: [AnimalType] = []
     // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
     
     private let questions: [Question] = [ //part of model
-        Question(text: NSLocalizedString("firstQuestion", comment: ""),
+        Question(text: NSLocalizedString("firstQuestion", comment: "The first question"),
                  type: .multiple,
                  answers:[
-                    Answer(text: NSLocalizedString("Steak", comment: ""), type: .dog),
-                    Answer(text: NSLocalizedString("Fish", comment: ""), type: .cat),
-                    Answer(text: NSLocalizedString("Cheese", comment: ""), type: .mouse),
-                    Answer(text: NSLocalizedString("Carrots", comment: ""), type: .rabbit)
+                    Answer(text: NSLocalizedString("Steak", comment: "The user likes steak"), type: .dog),
+                    Answer(text: NSLocalizedString("Fish", comment: "The user likes fish"), type: .cat),
+                    Answer(text: NSLocalizedString("Cheese", comment: "The user likes cheese"), type: .mouse),
+                    Answer(text: NSLocalizedString("Carrots", comment: "The user likes carrots"), type: .rabbit)
             ]),
-        Question(text: NSLocalizedString("secondQuestion", comment: ""),
+        Question(text: NSLocalizedString("secondQuestion", comment: "The second question"),
                  type: .multiple,
                  answers:[
                     Answer(text: NSLocalizedString("Swimming", comment: "The user enjoys swimming"), type: .dog),
@@ -64,17 +58,16 @@ struct QuestionsViewModel {
                     Answer(text: NSLocalizedString("Eating", comment: "The user enjoys eating"), type: .mouse),
                     Answer(text: NSLocalizedString("Jumping", comment: "The user enjoys jumping"), type: .rabbit)
             ]),
-        Question(text: NSLocalizedString("thirdQuestion", comment: ""),
+        Question(text: NSLocalizedString("thirdQuestion", comment: "The third question"),
                  type: .single,
                  answers:[
-                    Answer(text: NSLocalizedString("I love them", comment: ""), type: .dog),
-                    Answer(text: NSLocalizedString("I dislike them", comment: ""), type: .cat),
-                    Answer(text: NSLocalizedString("I barely notice them", comment: ""), type: .mouse),
-                    Answer(text: NSLocalizedString("I get a little nervous", comment: ""), type: .rabbit)
+                    Answer(text: NSLocalizedString("I love them", comment: "The user loves car rides"), type: .dog),
+                    Answer(text: NSLocalizedString("I dislike them", comment: "The user doesn't love car rides"), type: .cat),
+                    Answer(text: NSLocalizedString("I barely notice them", comment: "The user barely notices car rides"), type: .mouse),
+                    Answer(text: NSLocalizedString("I get a little nervous", comment: "The user gets nervous in car rides"), type: .rabbit)
             ])
     ]
     // String comments to provide context for the element for translate
-    // TODO: Write comments for strings
     
     //MARK - Interface for view controller
     
