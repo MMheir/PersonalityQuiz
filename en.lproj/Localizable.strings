@@ -4,7 +4,7 @@
 "Question" = "Question #%@";
 "invalid index" = "invalid index";
 
-"Result" = "You are a";
+"Result" = "You are ";
 
 "Steak" = "Steak";
 "Fish" = "Fish";
@@ -21,7 +21,7 @@
 "I barely notice them" = "I barely notice them";
 "I get a little nervous" = "I get a little nervous";
 
-"carnivore" = "carnivore";
+"carnivore" = "a carnivore";
 
 // TODO:
 //  - Look into r.swift cocopod integration
