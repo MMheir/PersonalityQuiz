@@ -18,7 +18,7 @@ enum ResponseType{
     case single, multiple, ranged
 }
 
-struct Answer {
+struct Answer: Hashable {
     var text: String
     var type: AnimalType
 }

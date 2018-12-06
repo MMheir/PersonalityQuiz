@@ -38,7 +38,7 @@ struct QuestionsViewModel {
         return String(format: NSLocalizedString("Question", comment: ""), index)
     } // DONE: format number (get format string for number)
     
-    internal private(set) var answersChosen: [AnimalType] = []
+    internal private(set) var answersChosen = [Answer: Bool]()
     // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
     
     private let questions: [Question] = [ //part of model
@@ -88,9 +88,7 @@ struct QuestionsViewModel {
         let currentAnswers = currentQuestion.answers
         
         for (index, isSelected) in answersSelected.enumerated() {
-            if isSelected {
-                answersChosen.append(currentAnswers[index].type)
-            }
+            answersChosen.updateValue(isSelected, forKey: currentAnswers[index])
         }
     }
 }

@@ -2,7 +2,7 @@ import Foundation
 
 public class ResultsViewModel {
     
-    var responses: [AnimalType] = [] // This is the model
+    var responses = [Answer : Bool]() // This is the model
     
     init(){}
     
@@ -17,12 +17,12 @@ public class ResultsViewModel {
             }
             return answerText
         } else {
-            return answerText + " " + NSLocalizedString("carnivore", comment: "When the user does not select any answers")
+            return answerText + NSLocalizedString("carnivore", comment: "When the user does not select any answers")
         }
         // TODO: Make a list of results and pass that list to localized string
     }
     
-    static func calculatePersonalityResult(responses: [AnimalType]) -> [AnimalType] { //Dictionnaries
+    static func calculatePersonalityResult(responses: [Answer : Bool]) -> [AnimalType] { //Dictionnaries
         var answersFrequency: [AnimalType: Int] = [:]
         //        var answersFrequency2: Dictionary<AnimalType, Int> = [:]
         //        var answersFrequency3 = Dictionary<AnimalType, Int>()
@@ -36,9 +36,11 @@ public class ResultsViewModel {
         //        var test3 = Dictionary<AnimalType, Array<Int>>.init()
         
         // Builds the histogram
-        for response in responses {
+        for (answer, isSelected) in responses {
             //            answersFrequency[response] = (answersFrequency[response] ?? 0) + 1
-            answersFrequency[response, default: 0] += 1
+            if isSelected {
+               answersFrequency[answer.type, default: 0] += 1
+            }
         }
         
         let answersAndCountSortedDecreasingByCount = answersFrequency.sorted { $0.value > $1.value }
