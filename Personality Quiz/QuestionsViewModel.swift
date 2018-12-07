@@ -40,6 +40,7 @@ struct QuestionsViewModel {
     
     internal private(set) var answersChosen = [Answer: Bool]()
     // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
+    internal var mostCommonAnswers: [AnimalType] = []
     
     private let questions: [Question] = [ //part of model
         Question(text: NSLocalizedString("firstQuestion", comment: "The first question"),
@@ -67,7 +68,35 @@ struct QuestionsViewModel {
                     Answer(text: NSLocalizedString("I get a little nervous", comment: "The user gets nervous in car rides"), type: .rabbit)
             ])
     ]
-    // String comments to provide context for the element for translate
+    
+    internal mutating func calculateCurrentAnimalType(responses: [Answer : Bool]) {
+        var answersFrequency: [AnimalType: Int] = [:]
+        // Builds the histogram
+        for (answer, isSelected) in responses {
+            //            answersFrequency[response] = (answersFrequency[response] ?? 0) + 1
+            if isSelected {
+                answersFrequency[answer.type, default: 0] += 1
+            }
+        }
+        
+        let answersAndCountSortedDecreasingByCount = answersFrequency.sorted { $0.value > $1.value }
+        
+        // Take all top answers equal by count
+        let highestCount: Int? = answersAndCountSortedDecreasingByCount.first?.value
+        let topAnswersAndCount = answersAndCountSortedDecreasingByCount.prefix { (_ , value: Int) -> Bool in
+            return highestCount == value
+        }
+        
+        // Extracting only the top answers
+        let topAnswers = topAnswersAndCount.map { (key: AnimalType, value: Int) -> AnimalType in
+            return key
+        }
+        
+        // Build an array from the ArraySlice
+        mostCommonAnswers = Array<AnimalType>(topAnswers)
+        // return [AnimalType](topAnswers)
+        
+    }
     
     //MARK - Interface for view controller
     
@@ -90,5 +119,13 @@ struct QuestionsViewModel {
         for (index, isSelected) in answersSelected.enumerated() {
             answersChosen.updateValue(isSelected, forKey: currentAnswers[index])
         }
+    }
+    
+    internal func getCurrentAnimalType() -> String {
+        var responseText = "Your Animal Type so far: "
+        for answer in mostCommonAnswers {
+            responseText = responseText + "\(answer.rawValue)"
+        }
+        return responseText
     }
 }

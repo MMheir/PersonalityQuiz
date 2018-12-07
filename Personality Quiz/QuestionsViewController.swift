@@ -21,6 +21,7 @@ class QuestionsViewController: UIViewController {
     
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var currentAnimalType: UILabel!
     
     @IBOutlet weak var multipleAnswersStackView: UIStackView!
     
@@ -47,6 +48,8 @@ class QuestionsViewController: UIViewController {
         
         questionLabel.text = state.currentQuestion.text
         progressBar.setProgress(state.progressThroughQuestions, animated: true)
+        
+        currentAnimalType.text = viewModel.getCurrentAnimalType()
         
         multipleAnswers(using: state.currentQuestion.answers)
         
@@ -86,6 +89,8 @@ class QuestionsViewController: UIViewController {
         
         viewModel.userRespondCurrentQuestion(answersSelected: answersSelected)
         
+        viewModel.calculateCurrentAnimalType(responses: viewModel.answersChosen)
+        
         nextQuestion()
     }
     
@@ -95,7 +100,7 @@ class QuestionsViewController: UIViewController {
             //Fail fast only in debug for developer
             assert(segue.destination is ResultsViewController)
             if let resultsViewController = segue.destination as? ResultsViewController {
-                resultsViewController.viewModel.responses = viewModel.answersChosen
+                resultsViewController.viewModel.mostCommonAnswer = viewModel.mostCommonAnswers
             }
         } // Could we had just done an extension instead of overriding an empty function
         
