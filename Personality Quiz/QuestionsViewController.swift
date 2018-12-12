@@ -14,7 +14,7 @@ class QuestionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI(viewModel: viewModel) //Pass in view model/ puts view model into view
+        updateUI() //Pass in view model/ puts view model into view
         
         // Do any additional setup after loading the view.
     }
@@ -22,6 +22,11 @@ class QuestionsViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var currentAnimalType: UILabel!
+    
+    @IBOutlet weak var rabbitEmojiLabel: UILabel!
+    @IBOutlet weak var mouseEmojiLabel: UILabel!
+    @IBOutlet weak var catEmojiLabel: UILabel!
+    @IBOutlet weak var dogEmojiLabel: UILabel!
     
     @IBOutlet weak var multipleAnswersStackView: UIStackView!
     
@@ -35,24 +40,45 @@ class QuestionsViewController: UIViewController {
     @IBOutlet weak var multipleSwitch3: UISwitch!
     @IBOutlet weak var multipleSwitch4: UISwitch!
     
-    
-    // View model : User derived/model
-    // Model : Backend/file-system
-    
-    func updateUI(viewModel: QuestionsViewModel){
+    @IBAction func switchToggled() {
+        updateUserAnswers()
         
         let state = viewModel.currentStateForUI()
         
-        navigationItem.title = state.navigationTitle
+        setAnimalTypeEmojis(animalTransparencies: state.responseAnimalsTransparencyAlphas)
+    }
+    // View model : User derived/model
+    // Model : Backend/file-system
+    
+    func updateUI(){
         
+        let state = viewModel.currentStateForUI()
+        
+        setAnimalTypeEmojis(animalTransparencies: state.responseAnimalsTransparencyAlphas)
+        
+        navigationItem.title = state.navigationTitle
         
         questionLabel.text = state.currentQuestion.text
         progressBar.setProgress(state.progressThroughQuestions, animated: true)
         
-        currentAnimalType.text = viewModel.getCurrentAnimalType()
+        currentAnimalType.text = state.yourAnimalType
         
         multipleAnswers(using: state.currentQuestion.answers)
         
+    }
+    
+    func setAnimalTypeEmojis(animalTransparencies: [AnimalType : CGFloat]) {
+        rabbitEmojiLabel.text = "\(AnimalType.rabbit.rawValue)"
+        mouseEmojiLabel.text = "\(AnimalType.mouse.rawValue)"
+        catEmojiLabel.text = "\(AnimalType.cat.rawValue)"
+        dogEmojiLabel.text = "\(AnimalType.dog.rawValue)"
+        
+        let unselectedAlpha = QuestionsViewModel.unselectedAnimalTransparencyAlpha
+        
+        rabbitEmojiLabel.alpha = animalTransparencies[.rabbit] ?? unselectedAlpha
+        mouseEmojiLabel.alpha = animalTransparencies[.mouse] ?? unselectedAlpha
+        catEmojiLabel.alpha = animalTransparencies[.cat] ?? unselectedAlpha
+        dogEmojiLabel.alpha = animalTransparencies[.dog] ?? unselectedAlpha
     }
     
     func multipleAnswers (using answers: [Answer])
@@ -73,13 +99,19 @@ class QuestionsViewController: UIViewController {
         viewModel.incrementQuestionIndex()
         
         if viewModel.nextStateIsQuestion() { //TODO: Use 2 cases enum, switch over that enum
-            updateUI(viewModel: viewModel)
+            updateUI()
         } else {
             performSegue(withIdentifier: "ResultsSegue", sender: nil)
         }
     }
     @IBAction func multipleAnswersButtonPressed(_ sender: Any) { //call QVM from here too/ reading from view model
         
+        updateUserAnswers()
+        
+        nextQuestion()
+    }
+    
+    private func updateUserAnswers(){
         let answersSelected: [Bool] = [
             multipleSwitch1.isOn,
             multipleSwitch2.isOn,
@@ -88,10 +120,6 @@ class QuestionsViewController: UIViewController {
         ]
         
         viewModel.userRespondCurrentQuestion(answersSelected: answersSelected)
-        
-        viewModel.calculateCurrentAnimalType(responses: viewModel.answersChosen)
-        
-        nextQuestion()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -100,7 +128,7 @@ class QuestionsViewController: UIViewController {
             //Fail fast only in debug for developer
             assert(segue.destination is ResultsViewController)
             if let resultsViewController = segue.destination as? ResultsViewController {
-                resultsViewController.viewModel.mostCommonAnswer = viewModel.mostCommonAnswers
+                resultsViewController.viewModel.update(from: viewModel)
             }
         } // Could we had just done an extension instead of overriding an empty function
         

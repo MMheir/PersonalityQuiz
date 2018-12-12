@@ -95,69 +95,81 @@
                                         <rect key="frame" x="16" y="-137.5" width="288" height="715"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1E-4P-Dwe">
-                                                <rect key="frame" x="103" y="0.0" width="82.5" height="47"/>
+                                                <rect key="frame" x="103" y="0.0" width="82.5" height="45.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fet-Py-kDb">
-                                                <rect key="frame" x="0.0" y="47" width="288" height="100.5"/>
+                                                <rect key="frame" x="0.0" y="45.5" width="288" height="97.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="780" text="How much do you enjoy car rides?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="144" translatesAutoresizingMaskIntoConstraints="NO" id="lkr-gY-9Bm">
-                                                        <rect key="frame" x="0.0" y="5.5" width="239" height="90"/>
+                                                        <rect key="frame" x="0.0" y="3.5" width="239" height="90.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="right" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQr-KD-1ah">
-                                                        <rect key="frame" x="239" y="35" width="51" height="31"/>
+                                                        <rect key="frame" x="239" y="33.5" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="switchToggled" destination="7Y4-hr-rUk" eventType="valueChanged" id="APk-G9-hU5"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lti-b3-DVX">
-                                                <rect key="frame" x="0.0" y="147.5" width="288" height="100.5"/>
+                                                <rect key="frame" x="0.0" y="143" width="288" height="97.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="780" text="How much do you enjoy car rides?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="144" translatesAutoresizingMaskIntoConstraints="NO" id="6hD-S1-VKJ">
-                                                        <rect key="frame" x="0.0" y="5.5" width="239" height="90"/>
+                                                        <rect key="frame" x="0.0" y="4" width="239" height="90"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWh-bl-RBG">
-                                                        <rect key="frame" x="239" y="35" width="51" height="31"/>
+                                                        <rect key="frame" x="239" y="33.5" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="switchToggled" destination="7Y4-hr-rUk" eventType="valueChanged" id="GAM-IO-EFS"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UPk-c4-3TO">
-                                                <rect key="frame" x="0.0" y="248" width="288" height="101"/>
+                                                <rect key="frame" x="0.0" y="240.5" width="288" height="97.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="780" text="How much do you enjoy car rides?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="144" translatesAutoresizingMaskIntoConstraints="NO" id="hus-k5-xBf">
-                                                        <rect key="frame" x="0.0" y="5.5" width="239" height="90"/>
+                                                        <rect key="frame" x="0.0" y="4" width="239" height="90"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dz8-cx-YHE">
-                                                        <rect key="frame" x="239" y="35" width="51" height="31"/>
+                                                        <rect key="frame" x="239" y="33.5" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="switchToggled" destination="7Y4-hr-rUk" eventType="valueChanged" id="nKQ-Gh-dtg"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PyC-gB-2S7">
-                                                <rect key="frame" x="0.0" y="349" width="288" height="300.5"/>
+                                                <rect key="frame" x="0.0" y="338" width="288" height="291.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="780" text="How much do you enjoy car rides?How much do you enjoy car rides?How much do you enjoy car rides?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="144" translatesAutoresizingMaskIntoConstraints="NO" id="U0D-we-BIs">
-                                                        <rect key="frame" x="0.0" y="15.5" width="239" height="269"/>
+                                                        <rect key="frame" x="0.0" y="11" width="239" height="269"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6GF-NK-hjo">
-                                                        <rect key="frame" x="239" y="134.5" width="51" height="31"/>
+                                                        <rect key="frame" x="239" y="130" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="switchToggled" destination="7Y4-hr-rUk" eventType="valueChanged" id="cml-eB-Uhz"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pU8-hn-Fue">
-                                                <rect key="frame" x="78" y="649.5" width="132" height="40.5"/>
+                                                <rect key="frame" x="78" y="629.5" width="132" height="39"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Submit Answer"/>
                                                 <connections>
@@ -165,14 +177,43 @@
                                                 </connections>
                                             </button>
                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RHx-8d-i44">
-                                                <rect key="frame" x="24" y="690" width="240" height="2"/>
+                                                <rect key="frame" x="24" y="668.5" width="240" height="2"/>
                                             </progressView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Type so far" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DK-yb-JDB">
-                                                <rect key="frame" x="73.5" y="692" width="141.5" height="23"/>
+                                                <rect key="frame" x="73.5" y="670.5" width="141.5" height="22.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ro-01-W4P">
+                                                <rect key="frame" x="64" y="693" width="160" height="22"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rabbit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yJ-kN-j5L">
+                                                        <rect key="frame" x="0.0" y="0.0" width="49.5" height="22"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mouse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjQ-kN-WAf">
+                                                        <rect key="frame" x="49.5" y="0.0" width="51.5" height="22"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSo-tp-hW1">
+                                                        <rect key="frame" x="101" y="0.0" width="27" height="22"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjb-oo-2ID">
+                                                        <rect key="frame" x="128" y="0.0" width="32" height="22"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="iWh-bl-RBG" secondAttribute="trailing" id="Tyh-2s-qAx"/>
@@ -203,7 +244,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="UTu-nI-XPe"/>
                     <connections>
+                        <outlet property="catEmojiLabel" destination="FSo-tp-hW1" id="efk-qU-YNA"/>
                         <outlet property="currentAnimalType" destination="3DK-yb-JDB" id="1d0-A1-FFQ"/>
+                        <outlet property="dogEmojiLabel" destination="mjb-oo-2ID" id="dif-0I-Nrj"/>
+                        <outlet property="mouseEmojiLabel" destination="IjQ-kN-WAf" id="ZiN-Hz-4jd"/>
                         <outlet property="multipleAnswersStackView" destination="TQc-ii-pMt" id="cfl-4P-aCn"/>
                         <outlet property="multipleLabel1" destination="lkr-gY-9Bm" id="cSV-Ej-ZDn"/>
                         <outlet property="multipleLabel2" destination="6hD-S1-VKJ" id="ENo-0F-Qev"/>
@@ -215,6 +259,7 @@
                         <outlet property="multipleSwitch4" destination="6GF-NK-hjo" id="83v-eC-s1O"/>
                         <outlet property="progressBar" destination="RHx-8d-i44" id="ql5-Hy-awC"/>
                         <outlet property="questionLabel" destination="P1E-4P-Dwe" id="vj3-j5-ZNn"/>
+                        <outlet property="rabbitEmojiLabel" destination="6yJ-kN-j5L" id="Jzz-Hd-fEl"/>
                         <segue destination="Stz-1O-TRd" kind="show" identifier="ResultsSegue" id="RQs-yN-loV"/>
                     </connections>
                 </viewController>

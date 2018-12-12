@@ -23,6 +23,8 @@ import UIKit
 struct QuestionsViewModel {
     
     private var questionIndex = 0
+    internal static let unselectedAnimalTransparencyAlpha: CGFloat = 0.25
+
     private var currentQuestion: Question {
         return questions[questionIndex]
     }
@@ -33,14 +35,14 @@ struct QuestionsViewModel {
     }
     //mutating properties and calculated properties are var
     
-    private var navigationTitle: String {
-        let index = NSNumber(value: questionIndex+1)
-        return String(format: NSLocalizedString("Question", comment: ""), index)
-    } // DONE: format number (get format string for number)
-    
     internal private(set) var answersChosen = [Answer: Bool]()
     // DONE: Store type of answer directly when user answers (could be array of type or frequency dictionnary from type to int directly)
-    internal var mostCommonAnswers: [AnimalType] = []
+    internal var mostCommonAnswers: [AnimalType] {
+        return QuestionsViewModel.calculateCurrentAnimalType(responses: answersChosen)
+            .map { (key: AnimalType, value: Int) -> AnimalType in
+                return key
+            }
+    }
     
     private let questions: [Question] = [ //part of model
         Question(text: NSLocalizedString("firstQuestion", comment: "The first question"),
@@ -69,17 +71,11 @@ struct QuestionsViewModel {
             ])
     ]
     
-    internal mutating func calculateCurrentAnimalType(responses: [Answer : Bool]) {
-        var answersFrequency: [AnimalType: Int] = [:]
-        // Builds the histogram
-        for (answer, isSelected) in responses {
-            //            answersFrequency[response] = (answersFrequency[response] ?? 0) + 1
-            if isSelected {
-                answersFrequency[answer.type, default: 0] += 1
-            }
-        }
+    private static func calculateCurrentAnimalType(responses: [Answer : Bool]) -> [(key: AnimalType,value: Int)]{
+       
+        let animalFrequency = calculateAnimalFrequency(responses: responses)
         
-        let answersAndCountSortedDecreasingByCount = answersFrequency.sorted { $0.value > $1.value }
+        let answersAndCountSortedDecreasingByCount = animalFrequency.sorted { $0.value > $1.value }
         
         // Take all top answers equal by count
         let highestCount: Int? = answersAndCountSortedDecreasingByCount.first?.value
@@ -87,21 +83,39 @@ struct QuestionsViewModel {
             return highestCount == value
         }
         
-        // Extracting only the top answers
-        let topAnswers = topAnswersAndCount.map { (key: AnimalType, value: Int) -> AnimalType in
-            return key
+        // Build an array from the ArraySlice
+        return Array<(key: AnimalType,value: Int)>(topAnswersAndCount)
+        
+    }
+    
+    private static func calculateAnimalFrequency(responses: [Answer : Bool]) -> [AnimalType: Int]{
+        var animalFrequency: [AnimalType: Int] = [:]
+        // Builds the histogram
+        for (answer, isSelected) in responses {
+            if isSelected {
+                animalFrequency[answer.type, default: 0] += 1
+            }
         }
         
-        // Build an array from the ArraySlice
-        mostCommonAnswers = Array<AnimalType>(topAnswers)
-        // return [AnimalType](topAnswers)
+        return animalFrequency
+    }
+    
+    private static func calculateTotalAnswersPerAnimalType(questions: [Question]) -> [AnimalType : Int] {
+        var totalAnswersPerAnimalType = [AnimalType : Int]()
         
+        for question in questions {
+            for answer in question.answers {
+                totalAnswersPerAnimalType[answer.type, default: 0] += 1
+            }
+        }
+        
+        return totalAnswersPerAnimalType
     }
     
     //MARK - Interface for view controller
     
-    internal func currentStateForUI() -> (currentQuestion: Question, progressThroughQuestions: Float, navigationTitle: String){
-        return (currentQuestion, progressThroughQuestions, navigationTitle)
+    internal func currentStateForUI() -> (currentQuestion: Question, progressThroughQuestions: Float, navigationTitle: String, yourAnimalType: String, responseAnimalsTransparencyAlphas: [AnimalType : CGFloat]){
+        return (currentQuestion, progressThroughQuestions, navigationTitle, getCurrentAnimalType(), calculateTransparencyAlpha())
     }
     
     internal mutating func incrementQuestionIndex() {
@@ -121,6 +135,37 @@ struct QuestionsViewModel {
         }
     }
     
+    //MARK - CurrentStateForUI
+    
+    private func calculateTransparencyAlpha() -> [AnimalType : CGFloat] {
+        let animalFrequency = QuestionsViewModel.calculateAnimalFrequency(responses: answersChosen)
+        
+        let totalAnswersPerAnimalType = QuestionsViewModel.calculateTotalAnswersPerAnimalType(questions: questions)
+        
+        var transparencyAlphas = [AnimalType : CGFloat]()
+        
+        let unselectedAlpha = QuestionsViewModel.unselectedAnimalTransparencyAlpha
+        
+        for animalType in AnimalType.allCases {
+            if let frequency = animalFrequency[animalType],
+                let totalAnswers = totalAnswersPerAnimalType[animalType],
+                frequency > 0,
+                totalAnswers > 0 {
+                let ratio: CGFloat = CGFloat(frequency)/CGFloat(totalAnswers)
+                transparencyAlphas[animalType] = (ratio*(1-unselectedAlpha)) + unselectedAlpha
+            } else {
+                transparencyAlphas[animalType] = unselectedAlpha
+            }
+            
+        }
+        return transparencyAlphas
+    }
+    
+    private var navigationTitle: String {
+        let index = NSNumber(value: questionIndex+1)
+        return String(format: NSLocalizedString("Question", comment: ""), index)
+    } // DONE: format number (get format string for number)
+    
     internal func getCurrentAnimalType() -> String {
         var responseText = "Your Animal Type so far: "
         for answer in mostCommonAnswers {
@@ -128,4 +173,5 @@ struct QuestionsViewModel {
         }
         return responseText
     }
+    
 }

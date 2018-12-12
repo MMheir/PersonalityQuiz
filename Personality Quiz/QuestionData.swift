@@ -23,7 +23,7 @@ struct Answer: Hashable {
     var type: AnimalType
 }
 
-enum AnimalType: Character {
+enum AnimalType: Character, CaseIterable {
     case dog = "🐶"
     case cat = "🐱"
     case mouse = "🐭"
