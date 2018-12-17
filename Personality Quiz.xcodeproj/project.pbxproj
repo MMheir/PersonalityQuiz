@@ -10,7 +10,8 @@
 		8C0770C72193A27E00725F15 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0770C62193A27E00725F15 /* ResultViewModel.swift */; };
 		8C25ED20216F027D00EB7F68 /* QuestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25ED1F216F027D00EB7F68 /* QuestionsViewModel.swift */; };
 		8C25ED25217EA0E700EB7F68 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C25ED27217EA0E700EB7F68 /* Localizable.strings */; };
-		8CF5ACE221AE2363003BC1F4 /* answerSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF5ACE121AE2363003BC1F4 /* answerSwitchView.xib */; };
+		8CD646D621C354B300CECE4B /* AnswerSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD646D521C354B300CECE4B /* AnswerSwitchView.swift */; };
+		8CF5ACE221AE2363003BC1F4 /* AnswerSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF5ACE121AE2363003BC1F4 /* AnswerSwitchView.xib */; };
 		F4D496EF21482E8100F946A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D496EE21482E8100F946A0 /* AppDelegate.swift */; };
 		F4D496F121482E8100F946A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D496F021482E8100F946A0 /* ViewController.swift */; };
 		F4D496F421482E8100F946A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D496F221482E8100F946A0 /* Main.storyboard */; };
@@ -45,7 +46,8 @@
 		8C0770C62193A27E00725F15 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		8C25ED1F216F027D00EB7F68 /* QuestionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewModel.swift; sourceTree = "<group>"; };
 		8C25ED26217EA0E700EB7F68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8CF5ACE121AE2363003BC1F4 /* answerSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = answerSwitchView.xib; sourceTree = "<group>"; };
+		8CD646D521C354B300CECE4B /* AnswerSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSwitchView.swift; sourceTree = "<group>"; };
+		8CF5ACE121AE2363003BC1F4 /* AnswerSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerSwitchView.xib; sourceTree = "<group>"; };
 		F4D496EB21482E8100F946A0 /* Personality Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personality Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D496EE21482E8100F946A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4D496F021482E8100F946A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +119,8 @@
 				F4D496EE21482E8100F946A0 /* AppDelegate.swift */,
 				F4D496F021482E8100F946A0 /* ViewController.swift */,
 				F4D496F221482E8100F946A0 /* Main.storyboard */,
-				8CF5ACE121AE2363003BC1F4 /* answerSwitchView.xib */,
+				8CF5ACE121AE2363003BC1F4 /* AnswerSwitchView.xib */,
+				8CD646D521C354B300CECE4B /* AnswerSwitchView.swift */,
 				F4D49724214848A400F946A0 /* QuestionData.swift */,
 				F4D4971E2148429000F946A0 /* ResultsViewController.swift */,
 				8C0770C62193A27E00725F15 /* ResultViewModel.swift */,
@@ -255,7 +258,7 @@
 			files = (
 				F4D496F921482E8500F946A0 /* LaunchScreen.storyboard in Resources */,
 				8C25ED25217EA0E700EB7F68 /* Localizable.strings in Resources */,
-				8CF5ACE221AE2363003BC1F4 /* answerSwitchView.xib in Resources */,
+				8CF5ACE221AE2363003BC1F4 /* AnswerSwitchView.xib in Resources */,
 				F4D496F621482E8500F946A0 /* Assets.xcassets in Resources */,
 				F4D496F421482E8100F946A0 /* Main.storyboard in Resources */,
 			);
@@ -285,6 +288,7 @@
 				F4D496F121482E8100F946A0 /* ViewController.swift in Sources */,
 				F4D49725214848A400F946A0 /* QuestionData.swift in Sources */,
 				F4D49723214843B300F946A0 /* IntroductionViewController.swift in Sources */,
+				8CD646D621C354B300CECE4B /* AnswerSwitchView.swift in Sources */,
 				8C0770C72193A27E00725F15 /* ResultViewModel.swift in Sources */,
 				F4D496EF21482E8100F946A0 /* AppDelegate.swift in Sources */,
 				8C25ED20216F027D00EB7F68 /* QuestionsViewModel.swift in Sources */,

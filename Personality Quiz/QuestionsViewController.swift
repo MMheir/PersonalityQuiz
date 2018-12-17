@@ -11,15 +11,14 @@ import UIKit
 class QuestionsViewController: UIViewController {
     
     var viewModel = QuestionsViewModel()
+    var allAnswerViews: [AnswerSwitchView] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI() //Pass in view model/ puts view model into view
-        
         // Do any additional setup after loading the view.
     }
     
-    @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var currentAnimalType: UILabel!
     
@@ -27,28 +26,21 @@ class QuestionsViewController: UIViewController {
     @IBOutlet weak var mouseEmojiLabel: UILabel!
     @IBOutlet weak var catEmojiLabel: UILabel!
     @IBOutlet weak var dogEmojiLabel: UILabel!
+
+    @IBOutlet weak var progressBar: UIProgressView!
     
     @IBOutlet weak var multipleAnswersStackView: UIStackView!
     
-    @IBOutlet weak var multipleLabel1: UILabel!
-    @IBOutlet weak var multipleLabel2: UILabel!
-    @IBOutlet weak var multipleLabel3: UILabel!
-    @IBOutlet weak var multipleLabel4: UILabel!
+    // View model : User derived/model
+    // Model : Backend/file-system
     
-    @IBOutlet weak var multipleSwitch1: UISwitch!
-    @IBOutlet weak var multipleSwitch2: UISwitch!
-    @IBOutlet weak var multipleSwitch3: UISwitch!
-    @IBOutlet weak var multipleSwitch4: UISwitch!
-    
-    @IBAction func switchToggled() {
-        updateUserAnswers()
+    internal func switchToggled() {
+        submitAnswersFromUI()
         
         let state = viewModel.currentStateForUI()
         
         setAnimalTypeEmojis(animalTransparencies: state.responseAnimalsTransparencyAlphas)
     }
-    // View model : User derived/model
-    // Model : Backend/file-system
     
     func updateUI(){
         
@@ -59,11 +51,12 @@ class QuestionsViewController: UIViewController {
         navigationItem.title = state.navigationTitle
         
         questionLabel.text = state.currentQuestion.text
+//        answerSwitchView.label.text = state.currentQuestion.text
         progressBar.setProgress(state.progressThroughQuestions, animated: true)
         
         currentAnimalType.text = state.yourAnimalType
         
-        multipleAnswers(using: state.currentQuestion.answers)
+        updateAnswersUI(using: state.currentQuestion.answers)
         
     }
     
@@ -80,18 +73,19 @@ class QuestionsViewController: UIViewController {
         catEmojiLabel.alpha = animalTransparencies[.cat] ?? unselectedAlpha
         dogEmojiLabel.alpha = animalTransparencies[.dog] ?? unselectedAlpha
     }
-    
-    func multipleAnswers (using answers: [Answer])
-    {
-        multipleLabel1.text = answers[0].text
-        multipleLabel2.text = answers[1].text
-        multipleLabel3.text = answers[2].text
-        multipleLabel4.text = answers[3].text
-        
-        multipleSwitch1.isOn = false
-        multipleSwitch2.isOn = false
-        multipleSwitch3.isOn = false
-        multipleSwitch4.isOn = false
+
+    func updateAnswersUI(using answers: [Answer]) {
+        allAnswerViews.forEach{ $0.removeFromSuperview() }
+        allAnswerViews = []
+        answers.forEach { answer in
+            let views = Bundle.main.loadNibNamed("AnswerSwitchView", owner: nil, options: nil)
+            if let answerView = views?.first as? AnswerSwitchView {
+                answerView.updateAnswerUI(text: answer.text)
+                allAnswerViews.append(answerView)
+                self.multipleAnswersStackView.addArrangedSubview(answerView) // Change to open func insertArrangedSubview(_ view: UIView, at stackIndex: Int)
+            }
+        }
+
     }
     
     func nextQuestion (){
@@ -104,22 +98,17 @@ class QuestionsViewController: UIViewController {
             performSegue(withIdentifier: "ResultsSegue", sender: nil)
         }
     }
-    @IBAction func multipleAnswersButtonPressed(_ sender: Any) { //call QVM from here too/ reading from view model
+
+    @IBAction func answersSubmitButtonPressed(_ sender: Any) { //call QVM from here too/ reading from view model
         
-        updateUserAnswers()
+        submitAnswersFromUI()
         
         nextQuestion()
     }
     
-    private func updateUserAnswers(){
-        let answersSelected: [Bool] = [
-            multipleSwitch1.isOn,
-            multipleSwitch2.isOn,
-            multipleSwitch3.isOn,
-            multipleSwitch4.isOn
-        ]
-        
-        viewModel.userRespondCurrentQuestion(answersSelected: answersSelected)
+    private func submitAnswersFromUI(){
+        let answersSelected = allAnswerViews.map { $0.isSwitchOn() }
+        viewModel.submitAnswersToCurrentQuestion(answersSelected: answersSelected)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -137,14 +126,5 @@ class QuestionsViewController: UIViewController {
         // Precondition will crash in all build (debug, release)
         // Fail fast: assert, precondition or force unwrapping
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
