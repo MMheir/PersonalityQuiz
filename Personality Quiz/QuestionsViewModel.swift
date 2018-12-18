@@ -126,7 +126,7 @@ struct QuestionsViewModel {
         return questionIndex < questions.count
     }
  
-    internal mutating func userRespondCurrentQuestion(answersSelected: [Bool]){
+    internal mutating func submitAnswersToCurrentQuestion(answersSelected: [Bool]){
         
         let currentAnswers = currentQuestion.answers
         
