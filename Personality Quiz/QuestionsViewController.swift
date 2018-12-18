@@ -51,7 +51,7 @@ class QuestionsViewController: UIViewController {
         navigationItem.title = state.navigationTitle
         
         questionLabel.text = state.currentQuestion.text
-//        answerSwitchView.label.text = state.currentQuestion.text
+
         progressBar.setProgress(state.progressThroughQuestions, animated: true)
         
         currentAnimalType.text = state.yourAnimalType
@@ -80,12 +80,13 @@ class QuestionsViewController: UIViewController {
         answers.forEach { answer in
             let views = Bundle.main.loadNibNamed("AnswerSwitchView", owner: nil, options: nil)
             if let answerView = views?.first as? AnswerSwitchView {
-                answerView.updateAnswerUI(text: answer.text)
+                answerView.updateAnswerUI(text: answer.text) { [weak self] in
+                    self?.switchToggled()
+                }
                 allAnswerViews.append(answerView)
                 self.multipleAnswersStackView.addArrangedSubview(answerView) // Change to open func insertArrangedSubview(_ view: UIView, at stackIndex: Int)
             }
         }
-
     }
     
     func nextQuestion (){

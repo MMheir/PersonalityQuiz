@@ -14,15 +14,18 @@ class AnswerSwitchView: UIView {
     
     @IBOutlet private weak var label: UILabel!
     
+    private var answerChanged: (() -> Void)?
+    
     internal func isSwitchOn() -> Bool {
         return answerSwitch.isOn
     }
     
-//    @IBAction func switchSelected() {
-//        questionsViewController.switchToggled()
-//    }
+    @IBAction private func switchValueChanged(_ sender: UISwitch) {
+        answerChanged?()
+    }
     
-    internal func updateAnswerUI(text: String) {
+    internal func updateAnswerUI(text: String, answerChanged: @escaping () -> Void) {
+        self.answerChanged = answerChanged
         label.text = text
         answerSwitch.isOn = false
     }

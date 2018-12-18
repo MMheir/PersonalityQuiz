@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8C0770C72193A27E00725F15 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0770C62193A27E00725F15 /* ResultViewModel.swift */; };
+		8C146D3421C89D3D002FE487 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0770C62193A27E00725F15 /* ResultViewModel.swift */; };
+		8C146D3521C89D46002FE487 /* QuestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25ED1F216F027D00EB7F68 /* QuestionsViewModel.swift */; };
 		8C25ED20216F027D00EB7F68 /* QuestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25ED1F216F027D00EB7F68 /* QuestionsViewModel.swift */; };
 		8C25ED25217EA0E700EB7F68 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C25ED27217EA0E700EB7F68 /* Localizable.strings */; };
 		8CD646D621C354B300CECE4B /* AnswerSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD646D521C354B300CECE4B /* AnswerSwitchView.swift */; };
@@ -302,6 +304,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4D4970421482E8500F946A0 /* Personality_QuizTests.swift in Sources */,
+				8C146D3421C89D3D002FE487 /* ResultViewModel.swift in Sources */,
+				8C146D3521C89D46002FE487 /* QuestionsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
